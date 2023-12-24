@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="header">            
+    {% if user.is_authenticated %}
+    <p style="text-align: right; margin-right: 30px;">Welcome, {{ user.username }}! <a href="{% url 'logout' %}" class="text-primary"><strong>Logout</strong></a></p>
+  {% else %}
+    <p style="text-align: right; margin-right: 30px;"><a href="{% url 'login' %}"class="text-primary"><strong>Login</strong></a> | <a href="{% url 'register' %}"class="text-primary"><strong>Register</strong></a></p>
+  {% endif %}
+   
+    <h1 class="mt-5  text-center">Create Blog Post</h1>
+    
+</div>
+    <div style="text-align: center;margin: auto;width: 70%;padding: 2px; margin-top: 40px;">
+      
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="id_title" class="form-label">Title:</label>
+                <input type="text" name="title" id="id_title" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="id_content" class="form-label">Content:</label>
+                <textarea name="content" id="id_content" class="form-control" rows="10" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Create Post</button>
+        </form>
+    </div>
+    {% endblock %}

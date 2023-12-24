@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="header text-center">
+        <p style="text-align: right; margin-right: 30px;"> <a href="{% url 'register' %}"class="text-primary"><strong>Register</strong></a></p>
+        <h1 class="mt-5">Login</h1>
+    </div>
+    <center>
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form></center>
+    <hr>
+    {% endblock %}
